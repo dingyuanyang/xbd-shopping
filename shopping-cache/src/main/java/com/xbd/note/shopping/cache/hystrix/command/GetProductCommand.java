@@ -33,8 +33,16 @@ public class GetProductCommand extends HystrixCommand<Product> {
         return product;
     }
 
+//    @Override
+//    protected String getCacheKey() {
+//        return "product_" + productId;
+//    }
+
     @Override
-    protected String getCacheKey() {
-        return "product_" + productId;
+    protected Product getFallback() {
+        Product product = new Product();
+        product.setId(null);
+        product.setName("报错了");
+        return product;
     }
 }

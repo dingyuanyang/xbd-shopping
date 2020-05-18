@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ShoppingCacheApplication {
 
-    @Bean
-    public FilterRegistrationBean filterRegistrationBean(){
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean(new HystrixRequestContextFilter());
-        registrationBean.addUrlPatterns("/*");
-        return  registrationBean;
-    }
+//    @Bean
+//    public FilterRegistrationBean filterRegistrationBean(){
+//        FilterRegistrationBean registrationBean = new FilterRegistrationBean(new HystrixRequestContextFilter());
+//        registrationBean.addUrlPatterns("/*");
+//        return  registrationBean;
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(ShoppingCacheApplication.class, args);

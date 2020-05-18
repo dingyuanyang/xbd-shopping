@@ -4,6 +4,7 @@ package com.xbd.note.shopping.cache.api;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixObservableCommand;
 import com.xbd.note.shopping.cache.http.HttpClientUtils;
+import com.xbd.note.shopping.cache.hystrix.command.GetBrandNameCommand;
 import com.xbd.note.shopping.cache.hystrix.command.GetCityNameCommand;
 import com.xbd.note.shopping.cache.hystrix.command.GetProductCommand;
 import com.xbd.note.shopping.cache.hystrix.command.GetProductsCommand;
@@ -57,6 +58,12 @@ public class CacheRestController {
         HystrixCommand<String> cityNameCommand = new GetCityNameCommand(cityId);
         String cityName = cityNameCommand.execute();
         pro.setCityName(cityName);
+
+        Long brandId = pro.getBrandId();
+        HystrixCommand<String> branNameCommand = new GetBrandNameCommand(brandId);
+        String brandName = branNameCommand.execute();
+        pro.setBrandName(brandName);
+
         System.out.println(pro);
         return "success";
     }
