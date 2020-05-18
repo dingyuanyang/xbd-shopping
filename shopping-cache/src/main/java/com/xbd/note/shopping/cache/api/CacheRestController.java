@@ -41,7 +41,7 @@ public class CacheRestController {
      * @return
      */
     @GetMapping("/getProduct")
-    public String getProduct(@RequestParam("id") long productId) {
+    public Product getProduct(@RequestParam("id") long productId) {
         HystrixCommand<Product> command = new GetProductCommand(productId);
         Product pro = command.execute();
 
@@ -65,7 +65,7 @@ public class CacheRestController {
         pro.setBrandName(brandName);
 
         System.out.println(pro);
-        return "success";
+        return pro;
     }
 
     /**
