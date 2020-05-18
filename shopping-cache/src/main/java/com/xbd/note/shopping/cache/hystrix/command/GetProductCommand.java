@@ -26,9 +26,15 @@ public class GetProductCommand extends HystrixCommand<Product> {
     @Override
     protected Product run() throws Exception {
         String url = "http://localhost:8081/api/v1/product/" + productId;
+        System.out.println(url);
         String response = HttpClientUtils.sendGetRequest(url);
         System.out.println(response);
         Product product = JSONObject.parseObject(response, Product.class);
         return product;
+    }
+
+    @Override
+    protected String getCacheKey() {
+        return "product_" + productId;
     }
 }

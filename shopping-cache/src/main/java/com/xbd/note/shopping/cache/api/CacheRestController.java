@@ -90,4 +90,14 @@ public class CacheRestController {
         });
         return "success";
     }
+    @GetMapping("/getProduct/list")
+    public String getProductList(@RequestParam("id") String ids) {
+        for (String productId : ids.split(",")) {
+            GetProductCommand command = new GetProductCommand(Long.valueOf(productId));
+            Product product = command.execute();
+            System.out.println(product);
+            System.out.println(command.isResponseFromCache());
+        }
+        return "success";
+    }
 }
